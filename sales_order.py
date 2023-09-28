@@ -73,7 +73,7 @@ from plotly.subplots import make_subplots
 cf.go_offline()
 
 # + jupyter={"source_hidden": true}
-df = pd.read_csv("/home/cri/DATA SCIENCE/DataProyects/Sales_Orders/sales_data.csv")
+df = pd.read_csv("sales_data.csv")
 df_company = (
     df.drop(["Product_ean"], axis=1)
     .rename(columns={"catégorie": "Category"})
@@ -540,9 +540,7 @@ st.markdown(
 st.markdown("1. Tabla con las coordenadas de las ciudades y estados de USA")
 
 # + jupyter={"source_hidden": true}
-df_us = pd.read_csv(
-    "/home/cri/DATA SCIENCE/DataProyects/Sales_Orders/us-cities-top-1k-multi-year.csv"
-)
+df_us = pd.read_csv("us-cities-top-1k-multi-year.csv")
 df_us
 # -
 
