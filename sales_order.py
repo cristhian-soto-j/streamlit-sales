@@ -14,17 +14,21 @@
 
 import streamlit as st
 
-st.markdown("# Analisis de ventas")
+st.markdown("# Análisis de ventas")
 st.markdown("## Tienda Electron Tec (online-store)")
 st.markdown("---")
 #
 
 st.markdown(
-    "Una persona que lleva vendiendo durante un año en diferentes sitios de venta on-line nos ah pedido estudiar y evaluar los datos que ha, inteligentemente, recolectado durante este año de ventas. Esta persona no sabe que provecho puede sacarle a esta informacion, por lo que nosotros vamos a ayudarlo y explicaremos el proceso."
+
+    "Una persona que lleva vendiendo durante un año en diferentes sitios de venta on-line nos ha pedido estudiar y evaluar los datos que ha, inteligentemente, recolectado durante este año de ventas. Esta persona no sabe que provecho puede sacarle a esta información, por lo que nosotros vamos a ayudarlo y explicaremos el proceso."
+
 )
 #
 st.markdown(
-    "Los datos que nos entrego fue un archivo ___.CSV___, el cual contiene informacion de cada una de sus ventas realizadas durante el periodo mencionado, este archivo es una suma de los reportes que les da cada uno de los sitios en el cual el publica sus productos. Visualizando la informacion apreciamos la siguiente informacion:"
+
+    "Los datos que nos entregó fue un archivo ___.CSV___, el cual contiene información de cada una de sus ventas realizadas durante el periodo mencionado, este archivo es una suma de los reportes que les da cada uno de los sitios en el cual él publica sus productos. Visualizando la información apreciamos la siguiente información:"
+
 )
 st.markdown("- Fecha de la venta")
 st.markdown("- ID de la venta")
@@ -33,13 +37,13 @@ st.markdown("- Sitio de Venta")
 st.markdown("- Donde fue enviado el pedido")
 st.markdown("- Cantidad (producto)")
 st.markdown("- Precio de cada producto")
-st.markdown("- Costo de venta (comision que es igual en todos los sitios)")
+st.markdown("- Costo de venta (comisión que es igual en todos los sitios)")
 st.markdown("- El total de la venta sumando todos los productos")
 st.markdown("- Margen (la diferencia entre el Total venta y Costo de venta)")
 #
 #
 
-st.markdown("## Librerias que utilizaremos")
+st.markdown("## Librerías que utilizaremos")
 st.markdown("- pandas")
 st.markdown("- numpy")
 st.markdown("- cufflinks")
@@ -87,13 +91,17 @@ df_company.info()
 # -
 
 st.markdown(
-    ">_El DataFrame esta en buen estado, son 10 columnas en las cuales no se encuentra ningun valor nulo, en ninguna de sus 185.950 transacciones registrdas_."
+
+    "_El DataFrame está en buen estado, son 10 columnas en las cuales no se encuentra ningún valor nulo, en ninguna de sus 185.950 transacciones registrdas_."
+
 )
 st.markdown("")
-st.markdown("# Graficos y analisisst")
-st.markdown("## Graficos de barrast")
+st.markdown("# Gráficos y análisis")
+st.markdown("## Gráficos de barras")
 st.markdown(
-    "Vamos a crear una nueva tabla con las columnas _Product_ y _Order ID_, haciendo referencia al mismo nombre que tienen en la tabla original, luego vamos a agrupar valores duplicados en la columna _Product_ obteniendo una tabla con la cantidad de veces que se a realizado un pedido con el producto indicado."
+
+    "Vamos a crear una nueva tabla con las columnas _Product_ y _Order ID_, haciendo referencia al mismo nombre que tienen en la tabla original, luego vamos a agrupar valores duplicados en la columna _Product_ obteniendo una tabla con la cantidad de veces que se ha realizado un pedido con el producto indicado."
+
 )
 
 # + jupyter={"source_hidden": true}
@@ -167,13 +175,6 @@ fig.update_layout(
     template="plotly_white", plot_bgcolor="white", title="Tres mas vendidos"
 )
 st.plotly_chart(fig)
-# -
-
-# ---
-# >Tres mas vendidos:
-# >1. USB-C Charging Cable
-# >2. Lightning Charging Cable
-# >3. AAAA Batteries(4-pack)
 
 # + jupyter={"source_hidden": true}
 df_products_3 = (
@@ -209,15 +210,6 @@ fig.update_layout(
     template="plotly_white", plot_bgcolor="white", title="Tres menos vendidos"
 )
 st.plotly_chart(fig)
-# -
-
-# ---
-# >Tres productos menos vendidos:
-# >1. LG Dryer
-# >2. LG Washing Machine
-# >3. Vareebadd Phone
-
-# Haremos otra tabla siguiendo la metodologia anterior, pero en este caso agrupando la tabla `Product` y sumando la columna `marign`
 
 # + jupyter={"source_hidden": true}
 df_product_margin = (
@@ -257,15 +249,6 @@ fig.update_layout(
 )
 st.plotly_chart(fig)
 
-# -
-
-#
-# >Tres productos que han dejado mayor margen
-# >1. Macbook Pro Laptop
-# >2. Iphone
-# >3. ThinkPad Laptop
-#
-
 # + jupyter={"source_hidden": true}
 df_product_margin = (
     df_company.groupby(["Product"])["margin"]
@@ -303,16 +286,20 @@ st.plotly_chart(fig)
 # -
 
 #
-st.markdown(">Tres productos que han dejado menor margen:")
-st.markdown(">1. AAA Batteries(4-pack)")
-st.markdown(">2. AA Batteries(4-pack)")
-st.markdown(">3. Wired Headphones")
+st.markdown("Tres productos que han dejado menor margen:")
+st.markdown("1. AAA Batteries(4-pack)")
+st.markdown("2. AA Batteries(4-pack)")
+st.markdown("3. Wired Headphones")
 
 st.markdown(
-    "Ahora grupamos por `Category` y `Product` mas una nueva columna con un **count** de la columna `Product`"
+
+    "Ahora agrupamos por `Category` y `Product` mas una nueva columna con un **count** de la columna `Product`"
+
 )
 st.markdown(
-    "Asi obtendremos un grafico que muestra el margen de cada producto y en que tienda se vendio."
+
+    "Así obtendremos un gráfico que muestra el margen de cada producto y en que tienda se vendió."
+
 )
 
 # + jupyter={"source_hidden": true}
@@ -337,23 +324,32 @@ fig.update_layout(xaxis_tickangle=-90, plot_bgcolor="white")
 st.plotly_chart(fig)
 # -
 
-st.markdown("## Graficos circularesst")
+st.markdown("## Gráficos circulares")
 st.markdown(
-    "Si nos fijamos en la tabla original, vemos que la columna `Purchase Address` es un valor del tipo **str**, con el cual podemos trabajar y obtener aun mas informacion."
+
+    "Si nos fijamos en la tabla original, vemos que la columna `Purchase Address` es un valor del tipo **str**, con el cual podemos trabajar y obtener aun más información."
+
 )
 st.markdown(
-    "Por ejemplo, si separamos este valor del tipo **str** en base al valor `,`, obtendremos una lista de 3 datos del tipo **str**:"
+
+    "Por ejemplo, si separamos este valor del tipo **str** con base en el valor `,`, obtendremos una lista de 3 datos del tipo **str**:"
+
 )
 st.markdown(
-    "> **['944 Walnut St' , 'Boston' , 'MA 02215']** tomando como referencia una direccion existente en la tabla de manera aleatoria."
+    " **['944 Walnut St' , 'Boston' , 'MA 02215']** tomando como referencia una dirección existente en la tabla de manera aleatoria."
+
 )
 #
 
 st.markdown(
-    "Con esto podemos cosultar la lista en la columna y obtener, por ejemplo, la **ciudad**."
+
+    "Con esto podemos consultar la lista en la columna y obtener, por ejemplo, la **ciudad**."
+
 )
 st.markdown(
-    "Uniendo esto y sumando la columna `Margin`, podemos conocer el margen obtenido por cada cuidad donde se encargo el producto."
+
+    "Uniendo esto y sumando la columna `Margin`, podemos conocer el margen obtenido por cada ciudad donde se encargó el producto."
+
 )
 
 # + jupyter={"source_hidden": true}
@@ -384,10 +380,13 @@ fig.update_traces(
 
 st.markdown("---")
 st.markdown(
-    "> Cantidad porcentual que tiene cada ciudad con respecto al total del margen obtenido durante el periodo"
+    " Cantidad porcentual que tiene cada ciudad con respecto al total del margen obtenido durante el periodo"
+
 )
 st.markdown(
-    "Siguiendo la metodologia anterior, obtenemos el margen de cada estado, ayudandonos de una tabla _transitoria_ para poder volver a separar el valor **str** pero esta vez en base a ` ` espacio."
+
+    "Siguiendo la metodología anterior, obtenemos el margen de cada estado, ayudándonos de una tabla _transitoria_ para poder volver a separar el valor **str** pero esta vez con base en ` ` espacio."
+
 )
 
 # + jupyter={"source_hidden": true}
@@ -459,10 +458,12 @@ fig.update_traces(
 )
 # -
 
-st.markdown("## Graficos de Linea y Linea/Barra")
+st.markdown("## Gráficos de Línea y Línea/Barra")
 
 st.markdown(
-    "Podemos hacer un grafico de lineas agrupando por periodos de tiempo, de esta manera podremos analizar el comportamiento, respecto de sus ingresos, de venta del cliente."
+
+    "Podemos hacer un gráfico de líneas agrupando por periodos de tiempo, de esta manera podremos analizar el comportamiento, respecto de sus ingresos, de venta del cliente."
+
 )
 
 # + jupyter={"source_hidden": true}
@@ -530,12 +531,16 @@ fig.update_layout(title_text="Sales in time (weeks) by margin", showlegend=False
 st.plotly_chart(fig)
 # -
 
-st.markdown("## Visualizacion en mapast")
+st.markdown("## Visualización en mapas")
 st.markdown(
-    "Con la ayuda de la libreria **Folium** vamos a mostrar el lugar geografico donde las compras fueron realizadas."
+
+    "Con la ayuda de la librería **Folium** vamos a mostrar el lugar geográfico donde las compras fueron realizadas."
+
 )
 st.markdown(
-    "Tendremos que trabajar con alguna otra fuente de informacion que contenga las coordenadas geograficas de los estados y ciudades de USA. Adicionalmente vamos a elegir un dato como `weigth` para poder hacer un **Heatmap**, con esta informacion sabremos en que lugar de Estados unidos se concentran la mayor cantidad de **_clientes_** y determinar la _posible mejor ubicacion_ para una tienda fisica."
+
+    "Tendremos que trabajar con alguna otra fuente de información que contenga las coordenadas geográficas de los estados y ciudades de USA. Adicionalmente vamos a elegir un dato como `weigth` para poder hacer un **Heatmap**, con esta información sabremos en qué lugar de Estados unidos se concentran la mayor cantidad de **_clientes_** y determinar la _posible mejor ubicacion_ para una tienda física."
+
 )
 st.markdown("1. Tabla con las coordenadas de las ciudades y estados de USA")
 
@@ -545,11 +550,14 @@ df_us
 # -
 
 st.markdown(
-    "> Fuente: [https://github.com/plotly/datasets/blob/master/us-cities-top-1k-multi-year.csv](https://github.com/plotly/datasets/blob/master/us-cities-top-1k-multi-year.csv)"
+    " Fuente: [https://github.com/plotly/datasets/blob/master/us-cities-top-1k-multi-year.csv](https://github.com/plotly/datasets/blob/master/us-cities-top-1k-multi-year.csv)"
+
 )
 
 st.markdown(
-    "Pero son demasiados datos, filtraremos solamente por las ciudades presentes en nuestros datos, luego tendremos que agrupar nuevamente para obtener el margen de cada **_estado_**, entendiendo que un estado puede tener una o mas ciudades."
+
+    "Pero son demasiados datos, filtraremos solamente por las ciudades presentes en nuestros datos, luego tendremos que agrupar nuevamente para obtener el margen de cada **_estado_**, entendiendo que un estado puede tener una o más ciudades."
+
 )
 
 # + jupyter={"source_hidden": true}
@@ -575,7 +583,9 @@ cities
 # -
 
 st.markdown(
-    "Utilizaremos como **weight** la columna `Margin`, asi obtendremos la coloracion del mapa en base al margen generado por cada **_estado_** de USA."
+
+    "Utilizaremos como **weight** la columna `Margin`, así obtendremos la coloración del mapa con base en el margen generado por cada **_estado_** de USA."
+
 )
 
 # + jupyter={"source_hidden": true}
@@ -613,31 +623,45 @@ st_data = st_folium(m, width=725)
 # -
 
 st.markdown(
-    ">**Folium** necesita la geometria geografica de cada uno de los estados de USA, **Folium** recomienda la informacion de ejemplo disponible en [Github](https://raw.githubusercontent.com/python-visualization/folium-example-data/main/us_states.json) en formato **.json**st.markdown("
+
+    "**Folium** necesita la geometría geográfica de cada uno de los estados de USA, **Folium** recomienda la información de ejemplo disponible en [Github](https://raw.githubusercontent.com/python-visualization/folium-example-data/main/us_states.json) en formato **.json**st.markdown("
     ")"
+
 )
 st.markdown(
-    ">Con esta informacio podriamos decir que el _mejor posible_ lugar para instalar una sucursal fisica es **California**, considerando que es el estado de USA que mas margen le proporciona en el periodo estudiadost.markdown("
+
+    "Con esta información podríamos decir que el _mejor posible_ lugar para instalar una sucursal física es **California**, considerando que es el estado de USA que más margen le proporciona en el periodo estudiadost.markdown("
     ")"
+
 )
 st.markdown("# Conclusiones")
 st.markdown(
-    "Estudiando, desmembrando y analizando la informacion que nos proporciono el cliente podemos concluir bastantes cosas."
+
+    "Estudiando, desmembrando y analizando la información que nos proporcionó el cliente podemos concluir bastantes cosas."
+
 )
 st.markdown(
-    "Realizamos un analisis **Economico** de la situacion actual del cliente y como podria proyectarse a futuro, considerando varios aspectosst.markdown("
+
+    "Realizamos un análisis **Económico** de la situación actual del cliente y como podría proyectarse a futuro, considerando varios aspectosst.markdown("
     ")"
+
 )
-st.markdown("### Situacion actual del cliente")
+st.markdown("### Situación actual del cliente")
 st.markdown(
-    "El cliente no mostro un aumento de sus ventas en el transcurso del periodo estudiado, mostrando una diferencia negativa de las dos unicas semanas iguales (de distinto anho)."
+
+    "El cliente no mostró un aumento de sus ventas en el transcurso del periodo estudiado, mostrando una diferencia negativa de las dos únicas semanas iguales (de distinto año)."
+
 )
 st.markdown(
-    "La semana del **6 de Enero del 2019** el cliente margino **118.2535 USD** y la semana del **5 de Enero del 2020** margino **112.9792 USD**, esto representa una diferencia de **-4.65%**. Esto no quiere decir que el negocio no fue exitoso, para eso deberiamos conocer y estudiar el **VAN** y la **TIR**.st.markdown("
+
+    "La semana del **6 de Enero del 2019** el cliente margino **118.2535 USD** y la semana del **5 de Enero del 2020** margino **112.9792 USD**, esto representa una diferencia de **-4.65%**. Esto no quiere decir que el negocio no fue exitoso, para eso deberíamos conocer y estudiar el **VAN** y la **TIR**.st.markdown("
     ")"
+
 )
 st.markdown(
-    "Nos damos cuenta, de que las mejores semanas que tuvo nuestro cliente, fueron las semanas del **31 de Marzo del 2019**, **5 de Mayo del 2019** y **11 de Agosto del 2019**, con margenes que alcanzaron los **124.6876 USD**, **124.5632 USD** y **126.7785 USD** respectivamente."
+
+    "Nos damos cuenta, de que las mejores semanas que tuvo nuestro cliente, fueron las semanas del **31 de Marzo del 2019**, **5 de Mayo del 2019** y **11 de Agosto del 2019**, con márgenes que alcanzaron los **124.6876 USD**, **124.5632 USD** y **126.7785 USD** respectivamente."
+
 )
 
 # + jupyter={"source_hidden": true}
@@ -668,17 +692,23 @@ fig.update_layout(
     xaxis_tickangle=-90, plot_bgcolor="white", title_text="Margen semanal"
 )
 st.plotly_chart(fig)
-st.markdown("> Grafico de Lines y Barras con fechas")
+st.markdown(" Gráfico de Línea y Barras con fechas")
 st.markdown(
+
     "En realidad podemos decir que fue un comportamiento bastante parejo, sin considerar su peor semana, la cual fue el **22 de Septiembre del 2019** con un margen de **99.9839 USD**, pero, es este valor apropiado para ser considerado?."
+
 )
 st.markdown("")
 st.markdown(
-    "El promedio`(media aritmetica)` semanal de margen es de **115.3102USD**, tomando en cuenta todos los datos. Ahora bien, debemos ser mas prolijos y lo que haremos sera obtener el promedio sin considerar los **outliers**, aplicando la identificacion por el **rango de los quintiles** `(media truncada)`."
+
+    "El promedio`(media aritmética)` semanal de margen es de **115.3102USD**, tomando en cuenta todos los datos. Ahora bien, debemos ser más prolijos y lo que haremos será obtener el promedio sin considerar los **outliers**, aplicando la identificación por el **rango de los quintiles** `(media truncada)`."
+
 )
 st.markdown("")
 st.markdown(
-    "Con un Boxplot podremos apreciar si existen valores fuera de rango, asi como tambien identificarlos para no considerarlos en la ecuacion, y claro, en python son dos lineas de codigo."
+
+    "Con un Boxplot podremos apreciar si existen valores fuera de rango, así como también identificarlos para no considerarlos en la ecuación, y claro, en Python son dos líneas de código."
+
 )
 st.markdown("1- Grafiquemos")
 
@@ -689,10 +719,14 @@ st.plotly_chart(fig)
 # -
 
 st.markdown(
-    "Se aprecian dos valores que estan fuera de rango, uno de los cuales es, efectivamente, la peor semana antes mencionada del **22 de Septiembre del 2019**."
+
+    "Se aprecian dos valores que están fuera de rango, uno de los cuales es, efectivamente, la peor semana antes mencionada del **22 de Septiembre del 2019**."
+
 )
 st.markdown(
-    "Y bueno, ¿donde quedaron las dos lineas de codigo para obtener el promedio truncado?"
+
+    "Y bueno, ¿dónde quedaron las dos líneas de código para obtener el promedio truncado?"
+
 )
 st.markdown("")
 st.markdown(
@@ -702,9 +736,10 @@ trim_mean = stats.trim_mean(dataFrame, 0.2)
 trim_mean
 ```
             """
+
 )
 st.markdown("")
-st.markdown(">todo gracias a la libreria **scipy**.")
+st.markdown("todo gracias a la librería **scipy**.")
 
 # + jupyter={"source_hidden": true}
 from scipy import stats
@@ -713,7 +748,7 @@ trim_mean = stats.trim_mean(week["margin"], 0.2)
 trim_mean
 # -
 
-st.markdown("> Promedio truncado del margen semanal.")
+st.markdown(" Promedio truncado del margen semanal.")
 
 # + jupyter={"source_hidden": true}
 dif_porcen = ((115.3102 - 115.32014074521601) / 115.3102) * 100
@@ -721,17 +756,23 @@ dif_porcen
 
 # -
 
-st.markdown(">Diferencia porcentual entre promedios obtenidos.")
+st.markdown("Diferencia porcentual entre promedios obtenidos.")
 st.markdown(
-    "La diferencia porcentual entre el promedio aritmetico y el promedio truncado es de un **-0.0086 %**"
+
+    "La diferencia porcentual entre el promedio aritmético y el promedio truncado es de un **-0.0086 %**"
+
 )
-st.markdown("## Geolocalizacion de sucursal fisicast")
+st.markdown("## Geolocalización de sucursal física")
 st.markdown(
-    "Logramos obtener el total de los **margenes** categorizados por **ciudades** y luego en **estados** de **Estados Unidos**, pais en el cual nuestro cliente ofrece sus productos, con esto queriamos responder a la pregunta del cliente __¿Donde instalarse con una sucursal fisica para su negocio?__"
+
+    "Logramos obtener el total de los **margenes** categorizados por **ciudades** y luego en **estados** de **Estados Unidos**, país en el cual nuestro cliente ofrece sus productos, con esto queríamos responder a la pregunta del cliente __¿Dónde instalarse con una sucursal física para su negocio?__"
+
 )
 st.markdown("---")
 st.markdown(
-    "En el grafico vemos que la mayor concentracion del margen obtenido, durante el periodo calculado, se encuentra en el estado de **California**. Y no solo eso, es en toda la **Costa Oeste** donde se encuentran los estados con una concentracion significativa."
+
+    "En el gráfico vemos que la mayor concentración del margen obtenido, durante el periodo calculado, se encuentra en el estado de **California**. Y no solo eso, es en toda la **Costa Oeste** donde se encuentran los estados con una concentración significativa."
+
 )
 #
 
@@ -756,24 +797,3 @@ folium.LayerControl().add_to(m)
 
 st_data = st_folium(m)
 # -
-
-st.markdown("## Mejores productos")
-
-
-df_margin_product = df_company[
-    ["Purchase Address", "Price Each", "Cost price", "margin"]
-].copy()
-df_margin_product.groupby(["Purchase Address"]).sum().sort_values(
-    ["margin"], ascending=False
-).head()
-
-df_adresses = (
-    df_company.groupby(["Purchase Address"])
-    .nunique()
-    .sort_values(by=["Quantity Ordered"], ascending=False)
-)
-df_adresses.head()
-
-# import ipywidgets as widgets
-
-# widgets.IntSlider()
